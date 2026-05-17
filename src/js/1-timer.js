@@ -25,7 +25,7 @@ const options = {
   onClose(selectedDates) {
     userSelectedDate = selectedDates[0];
 
-    if (userSelectedDate < Date.now()) {
+    if (userSelectedDate <= Date.now()) {
       iziToast.error({
         message: "Please choose a date in the future",
         position: "topRight",
@@ -73,16 +73,17 @@ startBtn.addEventListener("click", () => {
     const currentTime = Date.now();
 
     const deltaTime = userSelectedDate - currentTime;
-      if (deltaTime <= 0) {
-       clearInterval(timerId);
 
-      daysEl.textContent = "00";
-      hoursEl.textContent = "00";
-      minutesEl.textContent = "00";
-      secondsEl.textContent = "00";
+     if (deltaTime <= 0) {
+  clearInterval(timerId);
 
-          dateInput.disabled = false;
-          startBtn.disabled = false;
+  daysEl.textContent = "00";
+  hoursEl.textContent = "00";
+  minutesEl.textContent = "00";
+  secondsEl.textContent = "00";
+
+  dateInput.disabled = false;
+  startBtn.disabled = true;
 
   return;
 }
